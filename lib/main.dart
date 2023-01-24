@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-String userName = "Nayan Jyoti Patowary";
-String mailId = "nayan.h4.aec@gmail.com";
-String phoneNo = "+918486890785";
-String tagLine = "Software Developer";
-String publicAccount = "www.github.com";
-String publicUserName = "10nayan";
-String image = "images/nayan.jpg";
+String userName = "Jeet Barman";
+String mailId = "jeetbarman38@gmail.com";
+String phoneNo = "+918402894835";
+String tagLine = "Social Influencer";
+String publicAccount = "www.instagram.com";
+String publicUserName = "_auxin__/?igshid=YmMyMTA2M2Y%3D";
+String image = "images/jeet.jpg";
 
 final Uri phoneUrl = Uri.parse('tel:$phoneNo');
 final Uri mailUrl =
