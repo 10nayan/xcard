@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-final Uri _url = Uri.parse('tel:+918486890785');
+String userName = "Nayan Jyoti Patowary";
+String mailId = "nayan.h4.aec@gmail.com";
+String phoneNo = "+918486890785";
+String tagLine = "Software Developer";
+String publicAccount = "www.github.com";
+String publicUserName = "10nayan";
+String image = "images/nayan.jpg";
+
+final Uri phoneUrl = Uri.parse('tel:$phoneNo');
+final Uri mailUrl =
+    Uri.parse("mailto:$mailId?subject=Greetings!&body=Hi, $userName");
+final Uri publicUrl = Uri.parse("https://$publicAccount/$publicUserName");
 
 void main() {
   runApp(const MyApp());
@@ -16,38 +27,43 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.lightBlueAccent[400],
-          title: const Text("Liku"),
+          title: Text(userName),
         ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
-                "Likumani Deka",
+              Text(
+                userName,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black45,
                   fontSize: 36,
                   fontFamily: 'Lobster',
                 ),
               ),
               const SizedBox(height: 10),
-              const CircleAvatar(
-                radius: 70,
-                backgroundImage: AssetImage("images/liku3.jpg"),
+              GestureDetector(
+                onTap: () {
+                  _launchInstaUrl();
+                },
+                child: CircleAvatar(
+                  radius: 70,
+                  backgroundImage: AssetImage(image),
+                ),
               ),
               const SizedBox(height: 10),
-              const Text(
-                "BSc Nursing Student",
+              Text(
+                tagLine,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.black45,
                     fontSize: 22,
                     fontWeight: FontWeight.bold),
               ),
               Container(
                 margin: const EdgeInsets.symmetric(
-                    vertical: 10.0, horizontal: 40.0),
+                    vertical: 10.0, horizontal: 35.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   color: Colors.white70,
@@ -59,9 +75,8 @@ class MyApp extends StatelessWidget {
                   children: [
                     IconButton(
                       onPressed: () {
-                        _onSearchButtonPressed();
+                        _launchUrl();
                       },
-                      tooltip: 'Increase volume by 10',
                       icon: const Icon(
                         Icons.phone,
                         color: Colors.blue,
@@ -69,17 +84,18 @@ class MyApp extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 10),
-                    const Text(
-                      "+91 9365632699",
+                    Text(
+                      phoneNo,
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.black45, fontSize: 20),
+                      style:
+                          const TextStyle(color: Colors.black45, fontSize: 20),
                     )
                   ],
                 ),
               ),
               Container(
                 margin: const EdgeInsets.symmetric(
-                    vertical: 10.0, horizontal: 40.0),
+                    vertical: 10.0, horizontal: 35.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   color: Colors.white70,
@@ -88,17 +104,23 @@ class MyApp extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  children: const [
-                    Icon(
-                      Icons.mail,
-                      color: Colors.blue,
-                      size: 30,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        _launchMailUrl();
+                      },
+                      icon: const Icon(
+                        Icons.mail,
+                        color: Colors.blue,
+                        size: 30,
+                      ),
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     Text(
-                      "likumanideka0@gmail.com",
+                      mailId,
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.black45, fontSize: 20),
+                      style:
+                          const TextStyle(color: Colors.black45, fontSize: 20),
                     )
                   ],
                 ),
@@ -113,11 +135,19 @@ class MyApp extends StatelessWidget {
 }
 
 Future<void> _launchUrl() async {
-  if (!await launchUrl(_url)) {
-    throw 'Could not launch $_url';
+  if (!await launchUrl(phoneUrl)) {
+    throw 'Could not launch $phoneUrl';
   }
 }
 
-void _onSearchButtonPressed() {
-  print("search button clicked");
+Future<void> _launchMailUrl() async {
+  if (!await launchUrl(mailUrl)) {
+    throw 'Could not launch $mailUrl';
+  }
+}
+
+Future<void> _launchInstaUrl() async {
+  if (!await launchUrl(publicUrl)) {
+    throw 'Could not launch $publicUrl';
+  }
 }
